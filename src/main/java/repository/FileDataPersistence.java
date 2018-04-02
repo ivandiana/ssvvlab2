@@ -54,7 +54,7 @@ public class FileDataPersistence {
     }
 
     // Ambiguous what field of "Student" should be passed
-    public void addGrade(String student, String labNumber, float grade)
+    public void addGrade(int student, String labNumber, float grade)
             throws IOException, NumberFormatException, ParseException {
         File fileA = new File(file);
         File fileB = new File("temp");
@@ -68,11 +68,11 @@ public class FileDataPersistence {
             System.out.println("Reading: "+line);
             String[] temp = line.split(" ");
             String fileLabNumber = temp[0];
-            String fileStudentNumber = temp[4];
-            if (fileLabNumber.equals(labNumber) && fileStudentNumber.equals(student)) {
+            int fileStudentNumber = Integer.valueOf(temp[4]);
+            if (fileLabNumber.equals(labNumber) &&( fileStudentNumber==student)) {
                 Laboratory laboratory = new Laboratory(
                         Integer.valueOf(temp[0]), temp[1],
-                        Integer.valueOf(temp[2]), temp[4]);
+                        Integer.valueOf(temp[2]), Integer.valueOf(temp[4]));
                 laboratory.setGrade(grade);
                 writer.write(laboratory.toString() + "\n");
                 System.out.println("Writing: "+ laboratory.toString());
@@ -88,11 +88,11 @@ public class FileDataPersistence {
         fileB.renameTo(fileA);
     }
 
-    public Map<String, List<Laboratory>> getLaboratoryMap()
+    public Map<Integer, List<Laboratory>> getLaboratoryMap()
             throws NumberFormatException, IOException, ParseException {
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
-        Map<String, List<Laboratory>> laboratoryMap = new HashMap<String, List<Laboratory>>();
+        Map<Integer, List<Laboratory>> laboratoryMap = new HashMap<Integer, List<Laboratory>>();
 
         String line;
 
@@ -100,7 +100,7 @@ public class FileDataPersistence {
             String[] temp = line.split(" ");
             Laboratory laboratory = new Laboratory(Integer.valueOf(temp[0]),
                     temp[1], Integer.valueOf(temp[2]), Float.valueOf(temp[3]),
-                    temp[4]);
+                    Integer.valueOf(temp[4]));
             if (laboratoryMap.get(laboratory.getStudentRegNumber()) == null) {
                 List<Laboratory> laboratoryList = new ArrayList<Laboratory>();
                 laboratoryList.add(laboratory);
@@ -125,7 +125,7 @@ public class FileDataPersistence {
 
         while ((line = reader.readLine()) != null) {
             String[] temp = line.split(" ");
-            Student student = new Student(temp[0], temp[1] + temp[2], Integer.valueOf(temp[3]));
+            Student student = new Student(Integer.valueOf(temp[0]), temp[1] + temp[2], Integer.valueOf(temp[3]));
             allStudentsList.add(student);
         }
         reader.close();

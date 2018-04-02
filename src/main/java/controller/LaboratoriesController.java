@@ -41,9 +41,9 @@ public class LaboratoriesController {
         }
     }
 
-    public boolean addGrade(String student, String labNumber, float grade)
+    public boolean addGrade(int student, String labNumber, float grade)
             throws NumberFormatException, IOException, ParseException {
-        System.out.println("In controller: regNr="+student+" labNr="+labNumber+" grade=" + String.valueOf(grade));
+        System.out.println("In controller: regNr="+String.valueOf(student)+" labNr="+labNumber+" grade=" + String.valueOf(grade));
         if (Validator.validateGrade(grade)) {
             System.out.println("Grade is valid");
             this.laboratoryPersistence.addGrade(student, labNumber, grade);
@@ -56,14 +56,14 @@ public class LaboratoriesController {
 
     public List<Student> passedStudents() throws NumberFormatException,
             IOException, ParseException {
-        Map<String, List<Laboratory>> laboratoryMap = this.laboratoryPersistence.getLaboratoryMap();
+        Map<Integer, List<Laboratory>> laboratoryMap = this.laboratoryPersistence.getLaboratoryMap();
         List<Student> studentsList = studentPersistence.getStudentsList();
 
         List<Student> passedStudents = new ArrayList<>();
-        Entry<String, List<Laboratory>> entry;
+        Entry<Integer, List<Laboratory>> entry;
 
-        Set<Entry<String, List<Laboratory>>> entrySet = laboratoryMap.entrySet();
-        Iterator<Entry<String, List<Laboratory>>> iterator = entrySet.iterator();
+        Set<Entry<Integer, List<Laboratory>>> entrySet = laboratoryMap.entrySet();
+        Iterator<Entry<Integer, List<Laboratory>>> iterator = entrySet.iterator();
 
         while (iterator.hasNext()) {
             entry = iterator.next();

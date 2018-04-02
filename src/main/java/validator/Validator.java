@@ -8,13 +8,14 @@ import java.util.Date;
 public class Validator {
 
     public static boolean validateStudent(Student student) {
-        if(!student.getRegNumber().matches("[a-zA-Z]{4}[\\d]{4}")){
-            return false;
+       // if(!student.getRegNumber().matches("[a-zA-Z]{4}[\\d]{4}")){
+        if(student.getRegNumber()<0 || student.getRegNumber()> Integer.MAX_VALUE){
+                return false;
         }
         if (!student.getName().matches("[a-zA-Z]+[\\s]?[a-zA-Z]+")) {
             return false;
         }
-        if(student.getGroup() >= 1000 || student.getGroup() <= 0){
+        if(student.getGroup() > 900 || student.getGroup() < 100){
             return false;
         }
         return true;

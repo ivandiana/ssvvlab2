@@ -31,10 +31,16 @@ public class LaboratoriesUI {
             String line = br.readLine();
 
             if(line.equals("1")){
-                String registrationNumber, name;
+                int registrationNumber;String name;
                 int group;
-                System.out.print("Registration number (llllnnnn): ");
-                registrationNumber = br.readLine();
+                try {
+                    System.out.print("Registration number: ");
+                    String registrationString = br.readLine();
+                    registrationNumber= Integer.parseInt(registrationString);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid registration number - not a number");
+                    continue;
+                }
                 System.out.print("First name: ");
                 name = br.readLine();
                 System.out.print("Last name: ");
@@ -57,7 +63,8 @@ public class LaboratoriesUI {
 
             if(line.equals("2")){
                 int number, problemNumber;
-                String date, studentRegNumber;
+                String date;
+                int studentRegNumber;
 
                 try {
                     System.out.println("Lab number: ");
@@ -74,7 +81,14 @@ public class LaboratoriesUI {
                 System.out.println("Date (dd/mm/yyyy) (starting with tomorrow) :");
                 date = br.readLine();
                 System.out.println("Student reg number:");
-                studentRegNumber = br.readLine();
+                try {
+                    System.out.print("Registration number: ");
+                    String registrationString = br.readLine();
+                    studentRegNumber= Integer.parseInt(registrationString);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid registration number - not a number");
+                    continue;
+                }
                 Laboratory lab;
                 try {
                     lab = new Laboratory(number, date, problemNumber, studentRegNumber);
@@ -89,10 +103,17 @@ public class LaboratoriesUI {
             }
 
             if(line.equals("3")){
-                String registrationNumber, labNumber;
+                int registrationNumber;
+                String labNumber;
                 float grade;
-                System.out.println("Reg number: ");
-                registrationNumber = br.readLine();
+                try {
+                    System.out.print("Registration number: ");
+                    String registrationString = br.readLine();
+                    registrationNumber= Integer.parseInt(registrationString);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid registration number - not a number");
+                    continue;
+                }
                 System.out.println("Lab number: ");
                 labNumber = br.readLine();
                 try {

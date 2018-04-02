@@ -1,24 +1,24 @@
 package model;
 
 public class Student {
-    private String regNumber;
+    private int regNumber;
     private String name;
     private int group;
 
     public Student() {
     }
 
-    public Student(String regNumber, String name, int group) {
+    public Student(int regNumber, String name, int group) {
         this.regNumber = regNumber;
         this.name = name;
         this.group = group;
     }
 
-    public String getRegNumber() {
+    public int getRegNumber() {
         return regNumber;
     }
 
-    public void setRegNumber(String regNumber) {
+    public void setRegNumber(int regNumber) {
         this.regNumber = regNumber;
     }
 
@@ -48,7 +48,7 @@ public class Student {
         final int prime = 31;
         int result = 1;
         result = prime * result
-                + ((regNumber == null) ? 0 : regNumber.hashCode());
+                + ((regNumber *prime));
         return result;
     }
 
@@ -61,11 +61,10 @@ public class Student {
         if (getClass() != obj.getClass())
             return false;
         Student other = (Student) obj;
-        if (regNumber == null) {
-            if (other.regNumber != null)
-                return false;
-        } else if (!regNumber.equals(other.regNumber))
+        if (regNumber !=((Student) obj).regNumber) {
+
             return false;
+        }
         return true;
     }
 

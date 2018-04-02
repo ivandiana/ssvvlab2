@@ -10,10 +10,10 @@ public class Laboratory {
     private Date date;
     private int problemNumber;
     private float grade = 1;
-    private String studentRegNumber;
+    private int studentRegNumber;
 
     public Laboratory(int number, String dateString, int problemNumber,
-                      String studentRegNumber) throws ParseException {
+                      int studentRegNumber) throws ParseException {
         this.number = number; // problemNumber assigned to Number
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         this.date = format.parse(dateString);
@@ -22,7 +22,7 @@ public class Laboratory {
     }
 
     public Laboratory(int number, String date, int problemNumber, Float grade,
-                      String studentRegNumber) throws ParseException {
+                      int studentRegNumber) throws ParseException {
         this.number = number; // problemNumber assigned to Number
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         this.date = format.parse(date);
@@ -63,11 +63,11 @@ public class Laboratory {
         this.grade = grade;
     }
 
-    public String getStudentRegNumber() {
+    public int getStudentRegNumber() {
         return studentRegNumber;
     }
 
-    public void setStudentRegNumber(String studentRegNumber) {
+    public void setStudentRegNumber(int studentRegNumber) {
         this.studentRegNumber = studentRegNumber;
     }
 
