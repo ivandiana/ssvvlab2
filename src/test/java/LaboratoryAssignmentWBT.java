@@ -49,4 +49,10 @@ public class LaboratoryAssignmentWBT extends TestCase{
         {}
         assertEquals(false,res);
     }
+    @Test
+    public void testAssert()  {
+
+        assertEquals(true,true);
+    }
+
 }
