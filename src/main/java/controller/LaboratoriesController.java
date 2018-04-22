@@ -41,14 +41,14 @@ public class LaboratoriesController {
         }
     }
 
-    public boolean addGrade(int student, String labNumber, float grade)
+    public boolean addGrade(int student, int labNumber, float grade)
             throws NumberFormatException, IOException, ParseException {
         System.out.println("In controller: regNr="+String.valueOf(student)+" labNr="+labNumber+" grade=" + String.valueOf(grade));
         if (Validator.validateGrade(grade)) {
             System.out.println("Grade is valid");
-            this.laboratoryPersistence.addGrade(student, labNumber, grade);
+            boolean res=this.laboratoryPersistence.addGrade(student, labNumber, grade);
 
-            return true;
+            return res;
         } else {
             return false;
         }

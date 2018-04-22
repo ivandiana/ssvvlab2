@@ -104,7 +104,7 @@ public class LaboratoriesUI {
 
             if(line.equals("3")){
                 int registrationNumber;
-                String labNumber;
+                int labNumber;
                 float grade;
                 try {
                     System.out.print("Registration number: ");
@@ -114,8 +114,14 @@ public class LaboratoriesUI {
                     System.out.println("Invalid registration number - not a number");
                     continue;
                 }
-                System.out.println("Lab number: ");
-                labNumber = br.readLine();
+                try {
+                    System.out.println("Lab number: ");
+                    String labNrString = br.readLine();
+                    labNumber= Integer.parseInt(labNrString);
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid registration number - not a number");
+                    continue;
+                }
                 try {
                     System.out.println("Grade: ");
                     String gradeString = br.readLine();

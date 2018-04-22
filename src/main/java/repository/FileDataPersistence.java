@@ -54,31 +54,28 @@ public class FileDataPersistence {
     }
 
     // Ambiguous what field of "Student" should be passed
-    public void addGrade(int student, String labNumber, float grade)
+    public boolean addGrade(int student, int labNumber, float grade)
             throws IOException, NumberFormatException, ParseException {
-        File fileA = new File(file);
-        File fileB = new File("temp");
+        boolean  result=false;
 
+        File fileA = new File(file); //1
+        File fileB = new File("temp");
         BufferedReader reader = new BufferedReader(new FileReader(fileA));
         BufferedWriter writer = new BufferedWriter(new FileWriter(fileB));
-
         String line;
-
-        while ((line = reader.readLine()) != null) {
-            System.out.println("Reading: "+line);
-            String[] temp = line.split(" ");
-            String fileLabNumber = temp[0];
+        while ((line = reader.readLine()) != null) { //2
+            String[] temp = line.split(" "); //3
+            int fileLabNumber = Integer.valueOf(temp[0]);
             int fileStudentNumber = Integer.valueOf(temp[4]);
-            if (fileLabNumber.equals(labNumber) &&( fileStudentNumber==student)) {
+            if (fileLabNumber==labNumber &&( fileStudentNumber==student)) { //4
+                result=true; //5
                 Laboratory laboratory = new Laboratory(
                         Integer.valueOf(temp[0]), temp[1],
                         Integer.valueOf(temp[2]), Integer.valueOf(temp[4]));
                 laboratory.setGrade(grade);
                 writer.write(laboratory.toString() + "\n");
-                System.out.println("Writing: "+ laboratory.toString());
             } else {
-                System.out.println("Writing: "+ line.toString());
-                writer.write(line + "\n");
+                writer.write(line + "\n");//6
             }
         }
         writer.close();
@@ -86,6 +83,7 @@ public class FileDataPersistence {
 
         fileA.delete();
         fileB.renameTo(fileA);
+        return result; //7
     }
 
     public Map<Integer, List<Laboratory>> getLaboratoryMap()

@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class Laboratory {
     // Ambiguous names : number and problem number
-    private int number;
+    private int labNumber;
     private Date date;
     private int problemNumber;
     private float grade = 1;
@@ -14,7 +14,7 @@ public class Laboratory {
 
     public Laboratory(int number, String dateString, int problemNumber,
                       int studentRegNumber) throws ParseException {
-        this.number = number; // problemNumber assigned to Number
+        this.labNumber = number; // problemNumber assigned to Number
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         this.date = format.parse(dateString);
         this.problemNumber = problemNumber; // number assigned to problem number
@@ -23,7 +23,7 @@ public class Laboratory {
 
     public Laboratory(int number, String date, int problemNumber, Float grade,
                       int studentRegNumber) throws ParseException {
-        this.number = number; // problemNumber assigned to Number
+        this.labNumber = number; // problemNumber assigned to Number
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         this.date = format.parse(date);
         this.problemNumber = problemNumber; // number assigned to problem number
@@ -32,11 +32,11 @@ public class Laboratory {
     }
 
     public int getNumber() {
-        return number;
+        return labNumber;
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        this.labNumber = number;
     }
 
     public Date getDate() {
@@ -75,7 +75,7 @@ public class Laboratory {
     public String toString() {
         int month = date.getMonth() + 1;
         int year = date.getYear() + 1900;
-        return number + " " + date.getDate() + "/" + month + "/" + year + " "
+        return labNumber + " " + date.getDate() + "/" + month + "/" + year + " "
                 + problemNumber + " " + grade + " " + studentRegNumber;
     }
 
