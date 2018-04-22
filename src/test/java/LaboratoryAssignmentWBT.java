@@ -11,6 +11,8 @@ import java.text.ParseException;
 
 public class LaboratoryAssignmentWBT extends TestCase{
     private FileDataPersistence laboratoryPersistence ;
+
+    @Before
     public void setUp() throws Exception
     {
         super.setUp();
