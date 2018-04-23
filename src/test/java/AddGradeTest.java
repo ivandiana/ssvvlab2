@@ -9,7 +9,7 @@ import repository.FileDataPersistence;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class LaboratoryAssignmentWBT extends TestCase{
+public class AddGradeTest extends TestCase{
     private FileDataPersistence laboratoryPersistence ;
 
     @Before
